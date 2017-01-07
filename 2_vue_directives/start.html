@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vue JS | Directives</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css"/>
+    </head>
+    <body>
+        <div id="app">
+            <h1 v-text = "message"></h1>
+            <h1 v-html = "htmlmsg"></h1>
+            <h1 v-show = "viewed">This is Show Example</h1>
+            <h1 v-if = "ifshow">This is v-if example</h1> <!-- if ifshow is true then show  -->
+            <h1 v-else>This is v-else example</h1> <!-- if ifshow is false then show  -->
+        </div>
+    </body>
+    <!--<script src="js/vue.js" type="text/javascript"></script>-->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+           el: '#app',
+           data: {
+               message: 'Hello My First Vue JS Demo',
+               htmlmsg: 'This is Vue Demo <small>Small Directive Example</small>',
+               viewed : true,
+               ifshow: true
+           }
+        });
+    </script>
+</html>
