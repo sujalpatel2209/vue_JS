@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vue JS | Directives</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css"/>
+    </head>
+    <body>
+        <div id="app">
+            <h1 v-text='title1'></h1>
+            <h5 v-for='count in count'>{{count}} {{ message }}</h5>
+            <h1 v-text='title2'></h1>
+            <ul>
+                <li style="list-style-type: none" v-for='todo in todos'>{{todo.id}}) {{todo.name}}</li>
+            </ul>
+        </div>
+    </body>
+    <!--<script src="js/vue.js" type="text/javascript"></script>-->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+           el: '#app',
+           data: {
+               message: 'Hello My First Vue JS Demo',
+               title1: 'Count Example',
+               title2: 'V-for Example',
+               todos: [
+                   {'name':'Test User 1','id':1},
+                   {'name':'Test User 2','id':2},
+                   {'name':'Test User 3','id':3},
+                   {'name':'Test User 4','id':4},
+                   {'name':'Test User 5','id':5},
+                   {'name':'Test User 6','id':6},
+                   {'name':'Test User 7','id':7},
+                   {'name':'Test User 8','id':8},
+                   {'name':'Test User 9','id':9},
+                   {'name':'Test User 10','id':10},
+                   {'name':'Test User 11','id':11},
+                   {'name':'Test User 12','id':12}
+               ],
+               count : 10
+           }
+        });
+    </script>
+</html>
