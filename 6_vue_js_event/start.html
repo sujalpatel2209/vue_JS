@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vue JS | Events</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css"/>
+    </head>
+    <body>
+        <div id="app" class="text-center" style="padding-top: 50px">
+            <button @click='countup' class="btn btn-primary">Up</button>
+            <h1>{{ count }}</h1>
+            <button @click='countdown' class="btn btn-primary">Down</button>
+            <!--<input type="text" v-model='count' />-->
+            
+            <h3>URL : <a target="_blank" href="#">{{finalurl}}</a></h3>
+            <input type="text" name="" v-model='url'/>
+            <button @click='filterUrl' class='btn btn-success'>Get URL</button>
+        </div>
+    </body>
+    <!--<script src="js/vue.js" type="text/javascript"></script>-->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+           el: '#app',
+           data: {
+               message: 'Count',
+               count: 0,
+               url : '',
+               finalurl : ''
+           },
+           methods:{
+               countup: function(){
+                   //this.count = this.count + 1;
+                   this.count += 1;
+               },
+               countdown: function(){
+                   this.count -= 1;
+               },
+               filterUrl : function(){
+                   this.finalurl = this.url.replace(/^https?:\/\//,'').replace(/\/$/,'')
+               }
+           }
+        });
+    </script>
+</html>
