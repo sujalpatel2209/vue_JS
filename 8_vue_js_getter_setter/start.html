@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vue JS | Computed</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css"/>
+    </head>
+    <body>
+        <div id="app">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1>Hello {{ fullname }}</h1>
+                    <ul class="text-left">
+                        <li>First Name : {{ firstname }} </li>
+                        <li>Last Name  : {{ lastname }} </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>FullName:</label>
+                        <input type="text" class="form-control" v-model='fullname'/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>First Name:</label>
+                        <input type="text" class="form-control" v-model="firstname"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Last Name:</label>
+                        <input type="text" class="form-control" v-model="lastname"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+           el:'#app',
+           data:{
+               firstname : '',
+               lastname : ''
+           },
+           computed:{
+               fullname:{
+                 // getter funtion (use to get value)
+                 get:function(){
+                   return this.firstname + " " +this.lastname
+                 },
+                 // setter function (use to set value)
+                 set:function(value){
+                   var name = value.split(' ');
+                   //Sujal Patel
+                   //name[0] = Sujal
+                   //name[1] = Patel
+                   this.firstname = name[0];
+                   this.lastname = name[name.length - 1];
+                 }
+               }
+             }
+        });
+    </script>
+</html>

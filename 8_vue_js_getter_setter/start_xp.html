@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vue JS | Computed</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css"/>
+    </head>
+    <body>
+        <div id="app">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1>You are a <strong>{{level}}</strong></h1>
+                    <h2>Current XP : {{xp}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <button @click="addXP" class="btn btn-success btn-block">Add XP</button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <button @click="decreaseXP" class="btn btn-success btn-block">Decrease XP</button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+           el:'#app',
+           data:{
+               xp:10
+           },
+           computed:{
+               fullname:function(){
+                   return this.firstname + " " +this.lastname
+               }
+           },
+           methods:{
+               addXP:function(){
+                   return this.xp += 10;
+               },
+               decreaseXP:function(){
+                   return this.xp -= 10;
+               }
+           },
+           computed:{
+               level:function(){
+                    if(this.xp >= 200){
+                        return "Pro"
+                    } else if(this.xp >= 100){
+                        return "Intermediate"
+                    } else if(this.xp >= 0){
+                        return "Beginner"
+                    } else {
+                        return "Banned"
+                    }
+                }
+           }
+        });
+    </script>
+</html>
