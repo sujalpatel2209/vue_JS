@@ -22,11 +22,11 @@
               <div class="row">
                 <div class="col-md-6">
                   <input type="text" class="form-control" placeholder="Starting Zip" v-model='startingZipcode'>
-                  <span class="city-span">{{ startingZipcode }}</span>
+                  <span class="city-span">{{ startingCity }}</span>
                 </div>
                 <div class="col-md-6">
                   <input type="text" class="form-control" placeholder="Ending Zip" v-model='endingZipCode'>
-                  <span class="city-span">{{ endingZipCode }}</span>
+                  <span class="city-span">{{ endingCity  }}</span>
                 </div>
               </div>
               <div class="row">
@@ -56,15 +56,40 @@
       },
       watch:{
         startingZipcode:function(){
-          this.startingZipcode = ''
+          this.startingCity = ''
           if(this.startingZipcode.length == 5){
             this.loopupStartingZip()
+          }
+        },
+        endingZipCode:function(){
+          this.endingCity = ''
+          if(this.endingZipCode.length == 5){
+            this.loopupEndingZip()
           }
         }
       },
       methods:{
         loopupStartingZip: _.debounce(function() {
-          
+          var app = this
+          app.startingCity = 'Searching....'
+          axios.get('http://ziptasticapi.com/' + this.startingZipcode)
+              .then(function (result){
+                app.startingCity = result.data.city + ', ' + result.data.state
+              })
+              .catch(function (error){
+                app.startingCity = "Invalid Zip Code";
+              })
+        } , 500),
+        loopupEndingZip: _.debounce(function() {
+          var app = this
+          app.endingCity = 'Searching....'
+          axios.get('http://ziptasticapi.com/' + this.endingZipCode)
+              .then(function (result){
+                app.endingCity = result.data.city + ', ' + result.data.state
+              })
+              .catch(function (error){
+                app.endingCity = "Invalid Zip Code";
+              })
         } , 500)
       }
     })
